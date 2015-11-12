@@ -2,10 +2,10 @@ Work Plan
 
 Optimize design -- 30min, Friday 11/13
 Verilog module definition -- inputs & outputs, how they fit into block diagram -- 2hrs, Friday 11/13
-figure out what Verilog we don’t have
-fsm
-instruction decoder
-...others?
+    - figure out what Verilog we don’t have
+    - fsm
+    - instruction decoder
+    - ...others
 Write FSM control table for 10 operations we need to support -- 3+ hrs, Sunday 11/15 + 3rd meeting
 Midpoint Checkin -- Sunday 11/16
 Write modules -- 2hr, 3rd meeting
