@@ -8,7 +8,7 @@ module testALU;
     ALU alu (out, carryflag, overflag, zeroflag, a, b, selector);
 
     initial begin
-        $dumpfile("testALU.vcd"); //dump info to create wave propagation later
+        $dumpfile("test/waveform.vcd"); //dump info to create wave propagation later
         $dumpvars(0, alu);
 
         $display("              operandA              |               operandB              |  selector  |                 output                |                expected               | carryflag | overflag | zeroflag");
@@ -132,3 +132,4 @@ module testALU;
         $display("");
 
     end
+endmodule

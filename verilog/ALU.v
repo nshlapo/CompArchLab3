@@ -233,5 +233,3 @@ module signExtend(signExtendedInverse, inverse);
         end
     endgenerate
 endmodule
-
-endmodule
