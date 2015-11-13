@@ -10,7 +10,7 @@ module memory(
   always @(posedge clk)
     if (regWE)
       mem[Addr] <= DataIn;
-  initial $readmemh("data/file.dat", mem);
+  initial $readmemh("data/average.dat", mem);
 
   assign DataOut = mem[Addr];
 endmodule
