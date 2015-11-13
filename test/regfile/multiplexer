@@ -1,1 +1,1 @@
-iverilog -o test/compiled verilog/regfile/multiplexer.v verilog/regfile/multiplexer.t.v && ./test/compiled
+iverilog -o test/compiled verilog/regfile/multiplexer.v test/regfile/multiplexer.t.v && ./test/compiled

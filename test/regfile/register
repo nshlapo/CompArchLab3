@@ -1,1 +1,1 @@
-iverilog -o test/compiled verilog/regfile/register.v verilog/regfile/register.t.v && ./test/compiled
+iverilog -o test/compiled verilog/regfile/register.v test/regfile/register.t.v && ./test/compiled
