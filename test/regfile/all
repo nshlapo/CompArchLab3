@@ -1,0 +1,1 @@
+./test/regfile/register && ./test/regfile/decoder && ./test/regfile/multiplexer && ./test/regfile/regfile
