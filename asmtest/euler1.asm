@@ -1,3 +1,5 @@
+# Sum the multiples of 3 and 5 between 0 and 100, inclusive.
+# Expected output: $s0 is 0x972
 li $a0, 100
 jal fizzbuzz
 add $s0, $v0, $zero
@@ -5,7 +7,7 @@ add $s0, $v0, $zero
 li $v0, 10
 syscall
 
-# Sum the multiples of 3 and 5 up to $a0.
+# Sum the multiples of 3 and 5 between 0 and $a0, inclusive.
 fizzbuzz:
 li $t0, 0
 
