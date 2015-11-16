@@ -1,7 +1,7 @@
 module sign_extend
-    #(parameter width = 32)
-     (input [15:0] immediate,
+    #(parameter width = 32, size = 16)
+     (input [size-1:0] immediate,
       output [width-1:0] extended);
 
-    assign extended = {{(width-16){immediate[15]}}, immediate};
+    assign extended = {{(width-size){immediate[size-1]}}, immediate};
 endmodule
