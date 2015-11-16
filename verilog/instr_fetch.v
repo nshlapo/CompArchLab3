@@ -18,11 +18,15 @@ module instr_fetch (
     and AND (andWire, branch, zero);
     or OR (orWire, jal, andWire);
 
-
+    // branch/jal control mux
     assign inAdder = andWire ? extended : 30'b0;
+
+    // behavioral adder
     assign outAdder = PC + inAdder + 1;
+
+    // jump operation
     assign concWire = {PC[29:26], target};
-    assign address = PC << 2;
+
 
     // jump control multiplexer
     wire[2:0] jumpMux[29:0];
@@ -31,6 +35,8 @@ module instr_fetch (
     assign jumpMux[2] =  outAdder;
     assign pcIn = jumpMux[jump];
 
+    //output assignment
+    assign address = PC << 2;
 
     always @(posedge clk)
         PC <= pcIn;

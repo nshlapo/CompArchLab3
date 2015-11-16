@@ -26,6 +26,7 @@ parameter JR = 6'h8;
 reg [5:0] op_code, func_code;
 
 always @(posedge clk) begin
+
     op_code <= instruction[31:26];
     Rs <= instruction[25:21];
     Rt <= instruction[20:16];
