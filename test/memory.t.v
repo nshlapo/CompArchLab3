@@ -28,11 +28,11 @@ module testMem;
       $display("Failed to read instruction from address 0. Expected 201d3ffc, read %h", InstrOut);
     end
 
-    InstrAddr = 10'd1;
+    InstrAddr = 10'd4;
     clk = 1'b1; #5 clk = 1'b0; #5
     if (InstrOut != 32'h2008000e) begin
       dutpassed = 1'b0;
-      $display("Failed to read instruction from address 1. Expected 2008000e, read %h", InstrOut);
+      $display("Failed to read instruction from address 4. Expected 2008000e, read %h", InstrOut);
     end
 
     $display("DUT passed: %b", dutpassed);

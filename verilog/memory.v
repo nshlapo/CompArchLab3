@@ -12,5 +12,5 @@ module memory(
   initial $readmemh("data/average.dat", mem);
 
   assign DataOut = mem[DataAddr];
-  assign InstrOut = mem[InstrAddr];
+  assign InstrOut = mem[InstrAddr >> 2];
 endmodule
