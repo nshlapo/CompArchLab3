@@ -1,10 +1,10 @@
-`define AND and #20 //simulate physical gate delay
-`define OR or #20
-`define NOT not #10
-`define NOR nor #10
-`define NAND nand #10
-`define XOR xor #20
-`define XNOR xnor #20
+`define AND and //simulate physical gate delay
+`define OR or
+`define NOT not
+`define NOR nor
+`define NAND nand
+`define XOR xor
+`define XNOR xnor
 
 `define cADD  3'd0
 `define cSUB  3'd1
@@ -37,9 +37,7 @@ module ALU(output reg[31:0] result,
     doMath mather (mathres, carrymath, overmath, a, b, inverse, carryin);
     SLT slt (sltres, carryslt, overslt, a, b);
 
-    always @(selector or a or b) begin
-      #2300
-      //longest possible delay in SLT is 2250
+    always @(*) begin
         case (muxindex)
           3'd0:  begin
             result = xres;

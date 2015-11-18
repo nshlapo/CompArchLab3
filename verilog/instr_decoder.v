@@ -25,141 +25,153 @@ parameter JR = 6'h8;
 
 reg [5:0] op_code, func_code;
 
-always @(posedge clk) begin
+always @(instruction) begin
 
-    op_code <= instruction[31:26];
-    Rs <= instruction[25:21];
-    Rt <= instruction[20:16];
-    Rd <= instruction[15:11];
-    func_code <= instruction[5:0];
-    target <= instruction[25:0];
-    immediate <= instruction[15:0];
+    op_code = instruction[31:26];
+    Rs = instruction[25:21];
+    Rt = instruction[20:16];
+    Rd = instruction[15:11];
+    func_code = instruction[5:0];
+    target = instruction[25:0];
 
     case (op_code)
 
         LW: begin
-            branch <= 1'b0;
-            reg_write <= 1'b1;
-            mem_write <= 1'b0;
-            alu_src <= 1'b1;
-            jal <= 1'b0;
-            jump <= 2'b0;
-            reg_dst <= 2'b0;
-            mem_to_reg <= 2'b1;
-            alu_ctrl <= 3'b0;
-            immediate <= instruction[15:0];
+            branch = 1'b0;
+            reg_write = 1'b1;
+            mem_write = 1'b0;
+            alu_src = 1'b1;
+            jal = 1'b0;
+            jump = 2'b0;
+            reg_dst = 2'b0;
+            mem_to_reg = 2'b1;
+            alu_ctrl = 3'b0;
+            immediate = instruction[15:0];
         end
 
         SW: begin
-            branch <= 1'b0;
-            reg_write <= 1'b0;
-            mem_write <= 1'b1;
-            alu_src <= 1'b1;
-            jal <= 1'b0;
-            jump <= 2'b0;
-            reg_dst <= 2'bx;
-            mem_to_reg <= 2'bx;
-            alu_ctrl <= 3'b0;
-            immediate <= instruction[15:0];
+            branch = 1'b0;
+            reg_write = 1'b0;
+            mem_write = 1'b1;
+            alu_src = 1'b1;
+            jal = 1'b0;
+            jump = 2'b0;
+            reg_dst = 2'bx;
+            mem_to_reg = 2'bx;
+            alu_ctrl = 3'b0;
+            immediate = instruction[15:0];
         end
 
         J: begin
-            branch <= 1'b0;
-            reg_write <= 1'b0;
-            mem_write <= 1'b0;
-            alu_src <= 1'bx;
-            jal <= 1'bx;
-            jump <= 2'b10;
-            reg_dst <= 2'bx;
-            mem_to_reg <= 2'bx;
-            alu_ctrl <= 3'bx;
-            immediate <= instruction[15:0];
+            branch = 1'b0;
+            reg_write = 1'b0;
+            mem_write = 1'b0;
+            alu_src = 1'bx;
+            jal = 1'bx;
+            jump = 2'b10;
+            reg_dst = 2'bx;
+            mem_to_reg = 2'bx;
+            alu_ctrl = 3'bx;
+            immediate = instruction[15:0];
         end
 
         JAL: begin
-            branch <= 1'b0;
-            reg_write <= 1'b1;
-            mem_write <= 1'b0;
-            alu_src <= 1'bx;
-            jal <= 1'b1;
-            jump <= 2'b10;
-            reg_dst <= 2'b10;
-            mem_to_reg <= 2'b10;
-            alu_ctrl <= 3'bx;
-            immediate <= 16'd8;
+            branch = 1'b0;
+            reg_write = 1'b1;
+            mem_write = 1'b0;
+            alu_src = 1'bx;
+            jal = 1'b1;
+            jump = 2'b10;
+            reg_dst = 2'b10;
+            mem_to_reg = 2'b10;
+            alu_ctrl = 3'bx;
+            immediate = 16'd8;
         end
 
         BNE: begin
-            branch <= 1'b1;
-            reg_write <= 1'b0;
-            mem_write <= 1'b0;
-            alu_src <= 1'b0;
-            jal <= 1'b0;
-            jump <= 2'b0;
-            reg_dst <= 2'bx;
-            mem_to_reg <= 2'bx;
-            alu_ctrl <= 3'b1;
-            immediate <= instruction[15:0];
+            branch = 1'b1;
+            reg_write = 1'b0;
+            mem_write = 1'b0;
+            alu_src = 1'b0;
+            jal = 1'b0;
+            jump = 2'b0;
+            reg_dst = 2'bx;
+            mem_to_reg = 2'bx;
+            alu_ctrl = 3'b1;
+            immediate = instruction[15:0];
         end
 
         ADDI: begin
-            branch <= 1'b0;
-            reg_write <= 1'b1;
-            mem_write <= 1'b0;
-            alu_src <= 1'b1;
-            jal <= 1'b0;
-            jump <= 2'b0;
-            reg_dst <= 2'b0;
-            mem_to_reg <= 2'b0;
-            alu_ctrl <= 3'b0;
-            immediate <= instruction[15:0];
+            branch = 1'b0;
+            reg_write = 1'b1;
+            mem_write = 1'b0;
+            alu_src = 1'b1;
+            jal = 1'b0;
+            jump = 2'b0;
+            reg_dst = 2'b0;
+            mem_to_reg = 2'b0;
+            alu_ctrl = 3'b0;
+            immediate = instruction[15:0];
         end
 
         FUNC: begin
-            branch <= 1'b0;
-            mem_write <= 1'b0;
-            mem_to_reg <= 2'b0;
-            jal <= 1'b0;
-            reg_dst <= 2'b1;
-            immediate <= instruction[15:0];
+            branch = 1'b0;
+            mem_write = 1'b0;
+            mem_to_reg = 2'b0;
+            jal = 1'b0;
+            reg_dst = 2'b1;
+            immediate = instruction[15:0];
 
             case (func_code)
 
                 XORI: begin
-                    reg_write <= 1'b1;
-                    alu_src <= 1'b1;
-                    jump <=  2'b0;
-                    alu_ctrl <= 3'd2;
+                    reg_write = 1'b1;
+                    alu_src = 1'b1;
+                    jump =  2'b0;
+                    alu_ctrl = 3'd2;
                 end
 
                 ADD: begin
-                    reg_write <= 1'b1;
-                    alu_src <= 1'b0;
-                    jump <=  2'b0;
-                    alu_ctrl <= 3'd0;
+                    reg_write = 1'b1;
+                    alu_src = 1'b0;
+                    jump =  2'b0;
+                    alu_ctrl = 3'd0;
                 end
 
                 SUB: begin
-                    reg_write <= 1'b1;
-                    alu_src <= 1'b0;
-                    jump <= 2'b0;
-                    alu_ctrl <= 3'd1;
+                    reg_write = 1'b1;
+                    alu_src = 1'b0;
+                    jump = 2'b0;
+                    alu_ctrl = 3'd1;
                 end
 
                 SLT: begin
-                    reg_write <= 1'b1;
-                    alu_src <= 1'b0;
-                    jump <= 2'b0;
-                    alu_ctrl <= 3'd3;
+                    reg_write = 1'b1;
+                    alu_src = 1'b0;
+                    jump = 2'b0;
+                    alu_ctrl = 3'd3;
                 end
 
                 JR: begin
-                    reg_write <= 1'b0;
-                    alu_src <= 1'bx;
-                    jump <= 2'b1;
-                    alu_ctrl <= 3'bx;
+                    reg_write = 1'b0;
+                    alu_src = 1'bx;
+                    jump = 2'b1;
+                    alu_ctrl = 3'bx;
                 end
             endcase
+        end
+
+        default: begin
+            branch = 1'b0;
+            reg_write = 1'b0;
+            mem_write = 1'b0;
+            alu_src = 1'b0;
+            jal = 1'b0;
+            jump = 2'b0;
+            reg_dst = 2'b0;
+            mem_to_reg = 2'b0;
+            alu_ctrl = 3'b0;
+            immediate = instruction[15:0];
         end
     endcase
 end

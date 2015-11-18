@@ -8,14 +8,12 @@ CPU dut(
 	.clk(clk)
 );
 
-initial clk = 0;
+initial clk = 1;
 always #10 clk=!clk; // 50MHz Clock
 
 initial begin
 	$dumpfile("test/waveform.vcd");
 	$dumpvars(0, dut);
-
-
 
 	#1000
 	$finish;

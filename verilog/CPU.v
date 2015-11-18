@@ -2,17 +2,17 @@ module CPU(
 	input clk
 );
 
-wire [31:0] wire0, wire1, wire2, wire3, wire4, wire6, wire7, wire8, wire9, wire10;
+wire [31:0] wire0, wire1, wire2, wire3, wire4, wire5, wire6, wire7, wire8, wire9, wire10, wire13;
 
 wire branch, reg_write, mem_write, alu_src, jal, zero;
 wire [1:0] jump, reg_dst, mem_to_reg;
 wire [2:0] alu_ctrl;
-wire [4:0] Rs, Rt, Rd;
+wire [4:0] Rs, Rt, Rd, wire11, wire12;
 wire [15:0] immediate;
 wire [25:0] target;
 
-reg [4:0] wire11;
-reg [31:0] wire5;
+// reg [4:0] wire11;
+// reg [31:0] wire5;
 
 
 regfile regfile(
@@ -87,26 +87,12 @@ instr_decoder instr_decoder(
 
 assign wire8 = alu_src ? wire10 : wire9;
 
-always@(reg_dst) begin
-	case (reg_dst)
-		2'b00:
-			wire11 <= Rt;
-		2'b01:
-			wire11 <= Rd;
-		2'b10:
-			wire11 <= 5'd31;
-	endcase
-end
+// Address multiplexer
+assign wire12 = reg_dst[0] ? Rd : Rt;
+assign wire11 = reg_dst[1] ? 5'd31 : wire12;
 
-always@(mem_to_reg) begin
-	case (mem_to_reg)
-		2'b00:
-			wire5 <= wire3;
-		2'b01:
-			wire5 <= wire4;
-		2'b10:
-			wire5 <= wire1;
-	endcase
-end
+// Mem_to_reg multiplexer
+assign wire13 = mem_to_reg[0] ? wire4 : wire3;
+assign wire5 = mem_to_reg[1] ? wire1 : wire13;
 
 endmodule
