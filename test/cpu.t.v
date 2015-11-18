@@ -15,7 +15,7 @@ initial begin
 	$dumpfile("test/waveform.vcd");
 	$dumpvars(0, dut);
 
-	#1000
+	#10000
 	$finish;
 end
 
