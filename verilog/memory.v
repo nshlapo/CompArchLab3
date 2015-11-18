@@ -1,11 +1,10 @@
 module memory(
   input clk,
   input regWE,
-  input[9:0] DataAddr,
-  input[9:0] InstrAddr,
+
+  input[9:0] DataAddr, InstrAddr
   input[31:0] DataIn,
-  output[31:0] DataOut,
-  output[31:0] InstrOut
+  output[31:0] DataOut, InstrOut
 );
 
   reg [31:0] mem[1023:0];
@@ -15,5 +14,5 @@ module memory(
   initial $readmemh("data/average.dat", mem);
 
   assign DataOut = mem[DataAddr];
-  assign InstrOut = mem[InstrAddr]
+  assign InstrOut = mem[InstrAddr];
 endmodule

@@ -1,4 +1,4 @@
-module instruction_decoder (
+module instr_decoder (
     input [31:0] instruction,
     input clk,
     output reg branch, reg_write, mem_write, alu_src, jal,
