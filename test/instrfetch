@@ -1,0 +1,1 @@
+iverilog -o test/compiled verilog/sign_extend.v verilog/instr_fetch.v test/instr_fetch.t.v && ./test/compiled

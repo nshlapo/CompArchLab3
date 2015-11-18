@@ -3,7 +3,7 @@ module testSignEx();
     reg [15:0] immediate;
     wire [31:0] extended;
 
-    signExt #(32) dut (.immediate(immediate), .extended(extended));
+    sign_extend #(32) dut (.immediate(immediate), .extended(extended));
 
     initial begin
         immediate = 16'b0; #10
