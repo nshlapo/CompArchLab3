@@ -1,6 +1,5 @@
 module memory(
-  input clk,
-  input regWE,
+  input clk, regWE,
   input[9:0] DataAddr, InstrAddr,
   input[31:0] DataIn,
   output[31:0] DataOut, InstrOut
