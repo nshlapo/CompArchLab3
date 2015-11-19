@@ -21,8 +21,41 @@ Here are all of the tests we ran!
 
 #### Performance Analysis
 ------
-Here is our performance analysis.
+Here is our performance analysis. (see files in /reports)
 
+##### Power Usage
+
+| Property                 | Value  |
+|:-------------------------|:-------|
+| Total On-Chip Power (W)  | 0.103  |
+| Dynamic (W)              | 0.000  |
+| Device Static (W)        | 0.103  |
+| Effective TJA (C/W)      | 11.5   |
+| Max Ambient (C)          | 83.8   |
+| Junction Temperature (C) | 26.2   |
+
+##### Component Usage
+
+| Component             | Count |
+|:----------------------|:------|
+| 3 Input 30 Bit Adder  | 1     |
+| 2 Input 1 Bit XOR     | 354   |
+| 32 Bit Register       | 32    |
+| 30 Bit Register       | 1     |
+| 2 Input 32 Bit Mux    | 3     |
+| 2 Input 30 Bit Mux    | 1     |
+| 4 Input 30 Bit Mux    | 2     |
+| 2 Input 5 Bit Mux     | 2     |
+| 8 Input 3 Bit Mux     | 1     |
+| 6 Input 3 Bit Mux     | 1     |
+| 4 Input 3 Bit Mux     | 1     |
+| 8 Input 2 Bit Mux     | 6     |
+| 6 Input 2 Bit Mux     | 1     |
+| 3 Input 2 Bit Mux     | 1     |
+| 8 Input 1 Bit Mux     | 5     |
+| 6 Input 1 Bit Mux     | 7     |
+| 3 Input 1 Bit Mux     | 1     |
+| 4 Input 1 Bit Mux     | 1     |
 
 #### Work Plan Reflection
 ------
