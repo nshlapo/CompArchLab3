@@ -9,7 +9,7 @@ module memory(
   always @(posedge clk)
     if (regWE)
       mem[DataAddr] <= DataIn;
-  initial $readmemh("data/fibonacci.dat", mem);
+  initial $readmemh("data/bne.dat", mem);
 
   assign DataOut = mem[DataAddr];
   assign InstrOut = mem[InstrAddr >> 2];
