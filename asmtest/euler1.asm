@@ -1,3 +1,5 @@
+addi $sp, $zero, 0x3ffc
+
 # Sum the multiples of 3 and 5 between 0 and 100, inclusive.
 # Expected output: $s0 is 0x972
 addi $a0, $zero, 100
@@ -5,7 +7,9 @@ jal fizzbuzz
 add $s0, $v0, $zero
 
 addi $v0, $zero, 10
-syscall
+
+trap:
+j trap
 
 # Sum the multiples of 3 and 5 between 0 and $a0, inclusive.
 fizzbuzz:
