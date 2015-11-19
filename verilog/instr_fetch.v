@@ -12,10 +12,10 @@ module instr_fetch (
     wire orWire, andWire;
     reg [29:0] PC = 30'h0;
 
-    sign_extend #(30,14) ext (.immediate(imm16[15:2]),
+    sign_extend #(30) ext (.immediate(imm16),
                            .extended(extended));
 
-    and AND (andWire, branch, zero);
+    and AND (andWire, branch, !zero);
     or OR (orWire, jal, andWire);
 
     // branch/jal control mux
@@ -31,7 +31,7 @@ module instr_fetch (
     assign address = PC << 2;
 
     always @(posedge clk) begin
-        case (jump) 
+        case (jump)
             2'b00:
                 PC <= outAdder;
             2'b01:

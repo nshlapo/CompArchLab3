@@ -9,8 +9,7 @@ module memory(
   always @(posedge clk)
     if (regWE)
       mem[DataAddr] <= DataIn;
-  initial $readmemh("data/jump.dat", mem);
-
+  initial $readmemh("data/euler1.dat", mem);
   assign DataOut = mem[DataAddr];
   assign InstrOut = mem[InstrAddr >> 2];
 endmodule
