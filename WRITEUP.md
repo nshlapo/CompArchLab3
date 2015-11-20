@@ -3,7 +3,7 @@
 
 #### CPU Design
 ------
-We implemented a single-cycle CPU. Include our diagram, high-level explanation, overview, etc.
+We implemented a single-cycle CPU. 
 
 Our CPU includes an instruction fetch block with a program counter, an instruction decode block, a register file for temporary values, a data memory for program instructions and persistent values, and an ALU which supports eight arithmetic operations.
 ![Single-Cycle CPU Block Diagram](/img/cpu.png "Single-Cycle CPU Block Diagram")
