@@ -16,7 +16,24 @@ Our CPU supports eleven MIPS instructions. It uses a look-up table keyed on op c
 
 #### Testing Strategy
 ------
-Here are all of the tests we ran! 
+The two main new components introduced in this lab were the Instruction Fetch Unit and the Instruction Decode Unit. For this reason, we dedicated more time to testing these components, and for the most part, stuck with our testing strategies for components we had built previously - e.g. the ALU and Register Files.
+
+Note: To run all tests, consult the README in the `/test` directory.
+
+##### CPU Tests
+To test the CPU, we ran full assembly programs written both by ourselves and by the class. To test all the features, we ensured that all 11 instructions appeared in the test programs. The process we followed was - 1. Compile assembly in MARS 2. Output instructions from MARS 3. Run `/test/cpu` with the correct instruction file specified in our CPU. 4. Verify that the output is as expected.
+
+##### Instruction Fetch Unit
+To test the Instruction Fetch Unit, we exhaustively tested all the cases for which our PC should increment - the normal case, in which PC should increment by 4, the jump case, in which PC should increment by the specified amount in the instruction, and the branch case, when PC should jump to the completely new address specified in the instruction.
+
+##### Instruction Decode Unit
+To test the Instruction Decode Unit, we
+
+##### Register File
+To test the Register File, we
+
+##### ALU
+To test the Arithmetic Logic Unit, we 
 
 
 #### Performance Analysis
