@@ -11,6 +11,9 @@ wire [4:0] Rs, Rt, Rd, wire11, wire12;
 wire [15:0] immediate;
 wire [25:0] target;
 
+wire [9:0] wire2_10b, wire3_10b;
+wire [29:0] wire1_30b;
+
 // reg [4:0] wire11;
 // reg [31:0] wire5;
 
@@ -45,9 +48,10 @@ sign_extend signExt(
 memory memory(
 	.clk(clk),
 	.regWE(mem_write),
-	.DataAddr(wire3[9:0]),
-	.DataIn(wire9),
-	.InstrAddr(wire2[9:0]),
+
+	.DataAddr(wire3_10b),
+	.DataIn(wire7),
+	.InstrAddr(wire2_10b),
 	.DataOut(wire4),
 	.InstrOut(wire6)
 );
@@ -61,7 +65,7 @@ instr_fetch instr_fetch(
 	.imm16(immediate),
 	.target(target),
 	.Da(wire0),
-	.outAdder(wire1[29:0]),
+	.outAdder(wire1_30b),
 	.address(wire2)
 );
 
@@ -84,6 +88,10 @@ instr_decoder instr_decoder(
 	.immediate(immediate),
 	.target(target)
 );
+
+assign wire2_10b = wire2[9:0];
+assign wire3_10b = wire3[9:0];
+assign wire1_30b = wire1[29:0];
 
 assign wire8 = alu_src ? wire10 : wire9;
 
