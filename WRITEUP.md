@@ -21,28 +21,30 @@ The two main new components introduced in this lab were the Instruction Fetch Un
 Note: To run all tests, consult the README in the `/test` directory.
 
 ##### CPU Tests
-To test the CPU, we ran full assembly programs written both by ourselves and by the class. To test all the features, we ensured that all 11 instructions appeared in the test programs. The process we followed was - 1. Compile assembly in MARS 2. Output instructions from MARS 3. Run `/test/cpu` with the correct instruction file specified in our CPU. 4. Verify that the output is as expected. 
+To test the CPU, we ran full assembly programs written both by ourselves and by the class. To test all the features, we ensured that all 11 instructions appeared in the test programs. The process we followed was - 1. Compile assembly in MARS 2. Output instructions from MARS 3. Run `/test/cpu` with the correct instruction file specified in our CPU. 4. Verify that the output is as expected.
 
 After some debugging with handling `J` and `BNE` instructions, our CPU was able to perform proficiently with a wide variety of test assembly programs.
 
 ##### Instruction Fetch Unit
-To test the Instruction Fetch Unit, we exhaustively tested all the cases for which our PC should increment - 
+To test the Instruction Fetch Unit, we exhaustively tested all the cases for which our PC should increment -
 
 1. The normal case, in which PC should increment by 4
 2. The jump case, in which PC should jump to the instruction at the target address specified in the current instruction
 3. The branch case, when PC should increment by 4 plus the increment amount specified in the current instruction
 
-Under all reasonable test conditions, our Instruction Fetch unit read in the correct instructions, and incremented PC accordingly. 
+Under all reasonable test conditions, our Instruction Fetch unit read in the correct instructions, and incremented PC accordingly.
 
 ##### Instruction Decode Unit
-We chose to not explicitly write tests for our instruction decode unit, for two calculated reasons. First, the instruction decode simply takes in an instruction, and outputs a bunch of different flags based on this instruction. To test this, we would have had to write a test that mirrored our original control flag spreadsheet (shown above). The only thing we'd really be testing at that point is whether we typed all the flags in correctly, and in this, we run into the likelihood that we would make the same or different mistakes when writing the test. Second, we realized that we could sufficiently test our Instruction Decode unit by simply running several test assembly programs through our CPU. If our CPU performed correctly, it is reasonable to jump to the conclusion that our Instruction Decode unit was working properly. In running these tests, we encountered no errors in our instruction decode unit, and found it to work correctly in a wide variety of possible situations.
+We chose to not explicitly write tests for our instruction decode unit, for two calculated reasons. First, the instruction decode simply takes in an instruction, and outputs a bunch of different flags based on this instruction. To test this, we would have had to write a test that mirrored our original control flag spreadsheet (shown above). The only thing we'd really be testing at that point is whether we typed all the flags in correctly, and in this, we run into the likelihood that we would make the same or different mistakes when writing the test. Second, we realized that we could sufficiently test our Instruction Decode unit by simply running several test assembly programs through our CPU. If our CPU performed correctly, and our assembly programs used every basic instruction at least once, it is reasonable to jump to the conclusion that our Instruction Decode unit was working properly. In running these tests, we encountered no errors in our instruction decode unit, and found it to work correctly in a wide variety of possible situations.
 
 ##### Register File
-To test the Register File, we ran thde same tests we created under the test specifications provided in the register file assignment. We found these tests to be sufficiently exhaustive to ensure that our register file performed as expected.
+To test the Register File, we ran the same tests we created under the test specifications provided in the register file assignment. We found these tests to be sufficiently exhaustive to ensure that our register file performed as expected.
 
 ##### ALU
-To test the Arithmetic Logic Unit, we
+To test the Arithmetic Logic Unit, we used the same tests we had written for Lab 1, in which we tested various inputs with different controls, and ensured that our test cases outputted every possible output flag.
 
+##### Memory
+We tested the provided memory module because we had mad a small modification to it, which tested that a value written through the additional input port to a certain memory location could then be read properly from the additional output port.
 
 #### Performance Analysis
 ------
