@@ -33,7 +33,7 @@ To test the Instruction Decode Unit, we
 To test the Register File, we
 
 ##### ALU
-To test the Arithmetic Logic Unit, we 
+To test the Arithmetic Logic Unit, we
 
 
 #### Performance Analysis
@@ -76,4 +76,10 @@ Here is our performance analysis. (see files in /reports)
 
 #### Work Plan Reflection
 ------
-Here is our reflection on our work plan.
+Our work plan was very effective in ensuring that we were able to complete our lab and thoroughly test without much stress.
+We scheduled our work into four 2.5h blocks in which we completed the vast majority of our work, even though the tasks we assigned to each block weren't completely accurate.
+We began our work by creating the instruction table shown above, which informed most of the modifications we made to our initial CPU design, and streamlined much of our later work.
+We spent far less time redesigning our CPU than we allocated, because we realized that a majority of our components were already created (ALU, registers, etc...).
+We didn't use a mid-point check-in, although we felt that we had been making excellent progress, and everything we had already designed was tested and functioning properly.
+We spent the majority of our next meeting creating an instruction decoder, which took approximately the amount of time we had assigned to it, and the final meeting performing various assembly tests.
+
