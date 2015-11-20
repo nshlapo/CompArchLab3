@@ -2,7 +2,7 @@ module CPU(
 	input clk
 );
 
-wire [31:0] wire0, wire1, wire2, wire3, wire4, wire5, wire6, wire7, wire8, wire9, wire10, wire13;
+wire [31:0] wire0, wire1, wire2, wire3, wire4, wire5, wire6, wire8, wire9, wire10, wire13;
 
 wire branch, reg_write, mem_write, alu_src, jal, zero;
 wire [1:0] jump, reg_dst, mem_to_reg;
@@ -46,7 +46,7 @@ memory memory(
 	.clk(clk),
 	.regWE(mem_write),
 	.DataAddr(wire3[9:0]),
-	.DataIn(wire7),
+	.DataIn(wire9),
 	.InstrAddr(wire2[9:0]),
 	.DataOut(wire4),
 	.InstrOut(wire6)
