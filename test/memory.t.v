@@ -19,7 +19,7 @@ module testMem;
     dutpassed = 1'b1;
     clk = 1'b0; #5
 
-    // Test Case 1
+    // Test Case 1 - Read memory from Address 0 
     regWE = 1'b0;
     InstrAddr = 10'd0;
     clk = 1'b1; #5 clk = 1'b0; #5
@@ -28,6 +28,7 @@ module testMem;
       $display("Failed to read instruction from address 0. Expected 201d3ffc, read %h", InstrOut);
     end
 
+    // Test Case 2 - Read memory from Address 4
     InstrAddr = 10'd4;
     clk = 1'b1; #5 clk = 1'b0; #5
     if (InstrOut != 32'h2008000e) begin

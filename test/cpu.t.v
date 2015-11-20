@@ -1,3 +1,5 @@
+// CPU Test - runs program specified in CPU memory
+
 module cpuTest();
 
 reg clk;

@@ -37,13 +37,7 @@ module test_instrFetch();
 		target = 26'b0;
 		Da = 32'b0;
 
-		// $display("%b", address);
-		// $display("%b", outAdder);
-
 		#10 clk = 1; #10 clk = 0;
-
-		// $display("%b", address);
-		// $display("%b", outAdder);
 
 		// Tests whether PC will increment in normal case; should be 4 
 		if (address != 32'd4) begin

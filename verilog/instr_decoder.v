@@ -1,3 +1,10 @@
+/* 
+Instruction Decoder
+
+Takes in an instruction, outputs all control signals for CPU components
+*/
+
+
 module instr_decoder (
     input [31:0] instruction,
     input clk,
@@ -17,7 +24,7 @@ parameter BNE = 6'h5;
 parameter ADDI = 6'h8;
 parameter FUNC = 6'h0;
 
-parameter XORI = 6'he; //function parameters
+parameter XORI = 6'he; //function parameters for R-types
 parameter ADD = 6'h20;
 parameter SUB = 6'h22;
 parameter SLT = 6'h2a;
@@ -25,6 +32,7 @@ parameter JR = 6'h8;
 
 reg [5:0] op_code, func_code;
 
+// Listen for instruction change
 always @(instruction) begin
 
     op_code = instruction[31:26];
@@ -36,6 +44,7 @@ always @(instruction) begin
 
     case (op_code)
 
+        // Load word 
         LW: begin
             branch = 1'b0;
             reg_write = 1'b1;
@@ -49,6 +58,7 @@ always @(instruction) begin
             immediate = instruction[15:0];
         end
 
+        // Store word
         SW: begin
             branch = 1'b0;
             reg_write = 1'b0;
@@ -62,6 +72,7 @@ always @(instruction) begin
             immediate = instruction[15:0];
         end
 
+        // Jump
         J: begin
             branch = 1'b0;
             reg_write = 1'b0;
@@ -75,6 +86,7 @@ always @(instruction) begin
             immediate = instruction[15:0];
         end
 
+        // Jump aligned
         JAL: begin
             branch = 1'b0;
             reg_write = 1'b1;
@@ -88,6 +100,7 @@ always @(instruction) begin
             immediate = 16'd8;
         end
 
+        // Branch not equal
         BNE: begin
             branch = 1'b1;
             reg_write = 1'b0;
@@ -101,6 +114,7 @@ always @(instruction) begin
             immediate = instruction[15:0];
         end
 
+        // Add immediate
         ADDI: begin
             branch = 1'b0;
             reg_write = 1'b1;
@@ -114,6 +128,7 @@ always @(instruction) begin
             immediate = instruction[15:0];
         end
 
+        // R-types, opcode = 0
         FUNC: begin
             branch = 1'b0;
             mem_write = 1'b0;
@@ -161,6 +176,7 @@ always @(instruction) begin
             endcase
         end
 
+        // Default case
         default: begin
             branch = 1'b0;
             reg_write = 1'b0;
