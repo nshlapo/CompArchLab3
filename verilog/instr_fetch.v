@@ -1,3 +1,8 @@
+/* Instruction Fetch Module
+
+Reads in instructions, performs operations on PC based on instructions
+*/
+
 module instr_fetch (
     input clk, branch, zero, jal,
     input [1:0] jump,
@@ -12,6 +17,7 @@ module instr_fetch (
     wire orWire, andWire;
     reg [29:0] PC = 30'h0;
 
+    // Instantiate sign extender
     sign_extend #(30) ext (.immediate(imm16),
                            .extended(extended));
 
@@ -30,6 +36,7 @@ module instr_fetch (
     //output assignment
     assign address = PC << 2;
 
+    // Mux to determine correct flow for jump control signal
     always @(posedge clk) begin
         case (jump)
             2'b00:

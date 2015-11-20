@@ -2,8 +2,10 @@ module CPU(
 	input clk
 );
 
+// 32 bit wires to connect components of CPU
 wire [31:0] wire0, wire1, wire2, wire3, wire4, wire5, wire6, wire8, wire9, wire10, wire13;
 
+// Wires for flags and control signals
 wire branch, reg_write, mem_write, alu_src, jal, zero;
 wire [1:0] jump, reg_dst, mem_to_reg;
 wire [2:0] alu_ctrl;
@@ -14,10 +16,7 @@ wire [25:0] target;
 wire [9:0] wire2_10b, wire3_10b;
 wire [29:0] wire1_30b;
 
-// reg [4:0] wire11;
-// reg [31:0] wire5;
-
-
+// Instantiate register file
 regfile regfile(
 	.ReadData1(wire0),
 	.ReadData2(wire9),
@@ -29,7 +28,7 @@ regfile regfile(
 	.Clk(clk)
 );
 
-
+// Instantiate Arithmetic Logic Unit
 ALU alu(
 	.result(wire3),
 	.carryflag(),
@@ -40,11 +39,13 @@ ALU alu(
 	.selector(alu_ctrl)
 );
 
+// Instantiate sign extend unit
 sign_extend signExt(
 	.immediate(immediate),
 	.extended(wire10)
 );
 
+// Instantiate memory unit
 memory memory(
 	.clk(clk),
 	.regWE(mem_write),
@@ -56,6 +57,7 @@ memory memory(
 	.InstrOut(wire6)
 );
 
+// Instantiate instruction fetch unit
 instr_fetch instr_fetch(
 	.clk(clk),
 	.branch(branch),
@@ -69,7 +71,7 @@ instr_fetch instr_fetch(
 	.address(wire2)
 );
 
-
+// Instantiate instruction decoder unit
 instr_decoder instr_decoder(
 	.instruction(wire6),
 	.clk(clk),
@@ -89,6 +91,7 @@ instr_decoder instr_decoder(
 	.target(target)
 );
 
+// Connect all components together
 assign wire2_10b = wire2[9:0];
 assign wire3_10b = wire3[9:0];
 assign wire1_30b = wire1[29:0];
